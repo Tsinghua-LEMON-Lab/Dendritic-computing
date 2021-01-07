@@ -12,8 +12,8 @@ function DenNet = DenNet_train(DenNet, x, y)
 
     DenNet.loss = zeros(ep * ba, 1);
     n = 1;
+    tic;
     for i = 1 : ep
-        tic;
         r = randperm(m);
         for l = 1 : ba
             batch_x = x(r((l-1) * bs + 1 : l * bs), :);
@@ -23,7 +23,7 @@ function DenNet = DenNet_train(DenNet, x, y)
             DenNet = DenNet_bp(DenNet, batch_y);
             DenNet = DenNet_applygrads(DenNet);
 
-            DenNet.loss(n) = .5 * sum(sum((batch_y - DenNet.soma{end}).^2)) / m;
+            DenNet.loss(n) = .5 * sum(sum((batch_y - DenNet.soma{end}).^2)) / bs;
 
             n = n + 1;
         end
@@ -36,6 +36,7 @@ function DenNet = DenNet_train(DenNet, x, y)
                        '. Mini-batch mean loss is ', num2str(mean(DenNet.loss(n-ba:n-1))), ... 
                        '. Training accuracy is ', num2str(1 - er)];
             disp(message);
+            tic;
         end
 
     end
