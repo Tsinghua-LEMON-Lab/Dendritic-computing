@@ -1,0 +1,1 @@
+{'batch_size': 128, 'data_name': 'svhn', 'data_root': 'data', 'eval': False, 'loss': 'cross_entropy', 'lr': 0.0005, 'model_name': 'ann', 'num_epochs': 100, 'num_workers': 4, 'optimizer': 'sgd', 'pretrained_path': 'results/ann/svhn/checkpoint/last.pth', 'save_path': 'results/ann/svhn', 'save_root': 'results', 'scheduler': 'multi_step', 'weight_decay': 0.0005}
